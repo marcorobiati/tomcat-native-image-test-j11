@@ -1,0 +1,728 @@
+native build goes fine but on run with added parameters lots of errors.
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+
+**********************************************************************
+** Visual Studio 2019 Developer Command Prompt v16.11.8
+** Copyright (c) 2021 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+
+C:\Windows\System32>cd %TOMCAT_STUFFED%
+
+C:\tomcat-stuffed\stuffed>%JAVA_HOME%\bin\native-image --no-server --allow-incomplete-classpath --enable-https --initialize-at-build-time=org.eclipse.jdt,org.apache.el.parser.SimpleNode,jakarta.servlet.jsp.JspFactory,org.apache.jasper.servlet.JasperInitializer,org.apache.jasper.runtime.JspFactoryImpl -H:+JNI -H:+ReportUnsupportedElementsAtRuntime -H:+ReportExceptionStackTraces -H:EnableURLProtocols=http,https,jar,jrt -H:ConfigurationFileDirectories="%TOMCAT_STUFFED%\target" -H:ReflectionConfigurationFiles="%TOMCAT_STUFFED%\tomcat-reflection.json" -H:ResourceConfigurationFiles="%TOMCAT_STUFFED%\tomcat-resource.json" -H:JNIConfigurationFiles="%TOMCAT_STUFFED%\tomcat-jni.json" -jar target\tomcat-stuffed-1.0.jar
+Warning: Ignoring server-mode native-image argument --no-server.
+[tomcat-stuffed-1.0:130696]    classlist:   1,179.06 ms,  0.96 GB
+[tomcat-stuffed-1.0:130696]        (cap):   1,426.64 ms,  0.96 GB
+The URL protocol jar is not tested and might not work as expected.
+Supported URL protocols enabled by default: file,resource. Supported URL protocols available on demand: http,https.
+The URL protocol jrt is not tested and might not work as expected.
+Supported URL protocols enabled by default: file,resource. Supported URL protocols available on demand: http,https.
+[tomcat-stuffed-1.0:130696]        setup:   2,596.13 ms,  0.96 GB
+The bundle named: org.apache.catalina.tribes.transport.bio.LocalStrings, has not been found. If the bundle is part of a module, verify the bundle name is a fully qualified class name. Otherwise verify the bundle path is accessible in the classpath.
+The bundle named: org.apache.tomcat.util.threads.res.LocalStrings, has not been found. If the bundle is part of a module, verify the bundle name is a fully qualified class name. Otherwise verify the bundle path is accessible in the classpath.
+[tomcat-stuffed-1.0:130696]     (clinit):     348.22 ms,  4.43 GB
+[tomcat-stuffed-1.0:130696]   (typeflow):   2,702.75 ms,  4.43 GB
+[tomcat-stuffed-1.0:130696]    (objects):   6,823.77 ms,  4.43 GB
+[tomcat-stuffed-1.0:130696]   (features):   3,586.15 ms,  4.43 GB
+[tomcat-stuffed-1.0:130696]     analysis:  14,069.93 ms,  4.43 GB
+[tomcat-stuffed-1.0:130696]     universe:   1,183.12 ms,  4.60 GB
+[tomcat-stuffed-1.0:130696]      (parse):     568.47 ms,  4.60 GB
+[tomcat-stuffed-1.0:130696]     (inline):   1,180.50 ms,  4.76 GB
+[tomcat-stuffed-1.0:130696]    (compile):   7,668.68 ms,  5.52 GB
+[tomcat-stuffed-1.0:130696]      compile:  10,843.43 ms,  5.52 GB
+[tomcat-stuffed-1.0:130696]        image:   1,763.58 ms,  5.52 GB
+[tomcat-stuffed-1.0:130696]        write:     337.78 ms,  5.52 GB
+[tomcat-stuffed-1.0:130696]      [total]:  32,194.23 ms,  5.52 GB
+# Printing build artifacts to: C:\tomcat-stuffed\stuffed\tomcat-stuffed-1.0.build_artifacts.txt
+
+C:\tomcat-stuffed\stuffed>tomcat-stuffed-1.0.exe -Dcatalina.base="%TOMCAT_STUFFED%" -Djava.util.logging.config.file="%TOMCAT_STUFFED%\conf\logging.properties" --catalina -useGeneratedCode
+Dec 31, 2021 12:34:14 PM org.apache.catalina.startup.Catalina parseServerXml
+INFO: Configuration code loader [catalinaembedded.DigesterGeneratedCodeLoader] was not found, generated code will not be used
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.digester.Digester startElement
+SEVERE: Begin event threw exception
+java.lang.ClassNotFoundException: org.apache.catalina.core.StandardServer
+        at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:53)
+        at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:139)
+        at org.apache.tomcat.util.digester.ObjectCreateRule.begin(ObjectCreateRule.java:102)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1264)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:510)
+        at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:731)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1397)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3063)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:836)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:534)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+        at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1216)
+        at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+        at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1522)
+        at org.apache.catalina.startup.Catalina.parseServerXml(Catalina.java:642)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:732)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:769)
+        at org.apache.catalina.startup.Tomcat.init(Tomcat.java:461)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1337)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.startup.Catalina parseServerXml
+WARNING: Unable to load server configuration from [C:\tomcat-stuffed\stuffed\conf\server.xml]
+org.xml.sax.SAXParseException; systemId: file:/C:/tomcat-stuffed/stuffed/conf/server.xml; lineNumber: 22; columnNumber: 41; Error at line [22] column [41]: [org.apache.catalina.core.StandardServer]
+        at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:1953)
+        at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:1985)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1267)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:510)
+        at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:731)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1397)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3063)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:836)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:534)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+        at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1216)
+        at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+        at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1522)
+        at org.apache.catalina.startup.Catalina.parseServerXml(Catalina.java:642)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:732)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:769)
+        at org.apache.catalina.startup.Tomcat.init(Tomcat.java:461)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1337)
+Caused by: java.lang.ClassNotFoundException: org.apache.catalina.core.StandardServer
+        at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:53)
+        at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:139)
+        at org.apache.tomcat.util.digester.ObjectCreateRule.begin(ObjectCreateRule.java:102)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1264)
+        ... 19 more
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/core/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:994)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [StandardServer[-1]] with name [Tomcat:type=Server] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:994)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:998)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [java.util.concurrent.ScheduledThreadPoolExecutor@29af14a4[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]] with name [Tomcat:type=UtilityExecutor] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:998)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1004)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.tomcat.util.buf.StringCache@396b24b1] with name [Tomcat:type=StringCache] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1004)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mbeans/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/authenticator/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/deploy/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/loader/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/realm/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/session/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/startup/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/users/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/connector/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/valves/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/storeconfig/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/tomcat/util/descriptor/web/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1009)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.mbeans.MBeanFactory@3a63ff7c] with name [Tomcat:type=MBeanFactory] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1009)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.deploy.NamingResourcesImpl.initInternal(NamingResourcesImpl.java:959)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1012)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.deploy.NamingResourcesImpl@44c1cbc8] with name [Tomcat:type=NamingResources] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.deploy.NamingResourcesImpl.initInternal(NamingResourcesImpl.java:959)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1012)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:536)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [StandardService[Tomcat]] with name [Tomcat:type=Service] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:536)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mapper/mbeans-descriptors.xml]
+Dec 31, 2021 12:34:14 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:551)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.mapper.MapperListener@5f37ea40] with name [Tomcat:type=Mapper] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:551)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:34:14 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service [Tomcat]
+
+--------------------
+--------------------
+--------------------
+--------------------
+--------------------
+following errors after run with simply double click on exe, no parameters passed.
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.digester.Digester startElement
+SEVERE: Begin event threw exception
+java.lang.ClassNotFoundException: org.apache.catalina.core.StandardServer
+        at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:53)
+        at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:139)
+        at org.apache.tomcat.util.digester.ObjectCreateRule.begin(ObjectCreateRule.java:102)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1264)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:510)
+        at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:731)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1397)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3063)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:836)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:534)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+        at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1216)
+        at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+        at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1522)
+        at org.apache.catalina.startup.Catalina.parseServerXml(Catalina.java:642)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:732)
+        at org.apache.catalina.startup.Tomcat.init(Tomcat.java:459)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1337)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.startup.Catalina parseServerXml
+WARNING: Unable to load server configuration from [C:\tomcat-stuffed\stuffed\conf\server.xml]
+org.xml.sax.SAXParseException; systemId: file:/C:/tomcat-stuffed/stuffed/conf/server.xml; lineNumber: 22; columnNumber: 41; Error at line [22] column [41]: [org.apache.catalina.core.StandardServer]
+        at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:1953)
+        at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:1985)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1267)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:510)
+        at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:731)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1397)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3063)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:836)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+        at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:534)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+        at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+        at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+        at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1216)
+        at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+        at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1522)
+        at org.apache.catalina.startup.Catalina.parseServerXml(Catalina.java:642)
+        at org.apache.catalina.startup.Catalina.load(Catalina.java:732)
+        at org.apache.catalina.startup.Tomcat.init(Tomcat.java:459)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1337)
+Caused by: java.lang.ClassNotFoundException: org.apache.catalina.core.StandardServer
+        at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:53)
+        at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:139)
+        at org.apache.tomcat.util.digester.ObjectCreateRule.begin(ObjectCreateRule.java:102)
+        at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1264)
+        ... 18 more
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/core/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:994)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [StandardServer[-1]] with name [Tomcat:type=Server] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:994)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:998)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [java.util.concurrent.ScheduledThreadPoolExecutor@174b605a[Running, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]] with name [Tomcat:type=UtilityExecutor] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:998)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1004)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.tomcat.util.buf.StringCache@21629cca] with name [Tomcat:type=StringCache] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1004)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mbeans/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/authenticator/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/deploy/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/loader/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/realm/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/session/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/startup/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/users/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/connector/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/valves/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/storeconfig/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/tomcat/util/descriptor/web/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1009)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.mbeans.MBeanFactory@7132490c] with name [Tomcat:type=MBeanFactory] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1009)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.deploy.NamingResourcesImpl.initInternal(NamingResourcesImpl.java:959)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1012)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.deploy.NamingResourcesImpl@d752f88] with name [Tomcat:type=NamingResources] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.deploy.NamingResourcesImpl.initInternal(NamingResourcesImpl.java:959)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1012)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:536)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [StandardService[Tomcat]] with name [Tomcat:type=Service] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:536)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry loadDescriptors
+SEVERE: Error loading descriptors from [resource:org/apache/catalina/mapper/mbeans-descriptors.xml]
+Dec 31, 2021 12:36:51 PM org.apache.tomcat.util.modeler.Registry registerComponent
+SEVERE: Error registering MBean
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:551)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.util.LifecycleMBeanBase register
+WARNING: Failed to register object [org.apache.catalina.mapper.MapperListener@3a122eef] with name [Tomcat:type=Mapper] during component initialisation
+java.lang.ClassNotFoundException: org.apache.tomcat.util.modeler.modules.MbeansDescriptorsIntrospectionSource
+        at java.lang.Class.forName(DynamicHub.java:1433)
+        at java.lang.Class.forName(DynamicHub.java:1408)
+        at org.apache.tomcat.util.modeler.Registry.getModelerSource(Registry.java:737)
+        at org.apache.tomcat.util.modeler.Registry.load(Registry.java:609)
+        at org.apache.tomcat.util.modeler.Registry.findManagedBean(Registry.java:516)
+        at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:639)
+        at org.apache.catalina.util.LifecycleMBeanBase.register(LifecycleMBeanBase.java:152)
+        at org.apache.catalina.util.LifecycleMBeanBase.initInternal(LifecycleMBeanBase.java:53)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardService.initInternal(StandardService.java:551)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:1042)
+        at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:136)
+        at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:173)
+        at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+        at org.apache.catalina.startup.Tomcat.main(Tomcat.java:1365)
+
+Dec 31, 2021 12:36:51 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service [Tomcat]

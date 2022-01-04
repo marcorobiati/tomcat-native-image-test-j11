@@ -1,0 +1,6 @@
+[EXECUTABLE]
+tomcat-stuffed-1.0.exe
+
+[JDK_LIB]
+sunmscapi.dll
+
